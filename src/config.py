@@ -6,7 +6,6 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str
     POSTGRES_DB: str
     POSTGRES_HOST: str
-    DB_PORT: str
     DATABASE_URL: str
     SECRET_KEY: str
 
