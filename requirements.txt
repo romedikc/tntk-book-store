@@ -1,0 +1,12 @@
+alembic
+
+bcrypt==4.0.1
+
+fastapi
+SQLAlchemy
+
+passlib
+pydantic
+python-dotenv
+python-jose
+psycopg2-binary
