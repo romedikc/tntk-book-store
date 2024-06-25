@@ -21,3 +21,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+UPLOAD_DIR = "images"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
