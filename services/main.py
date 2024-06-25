@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from src.auth import routes as AuthRoutes
-from src.tasks import routes as TaskRoutes
+from services.auth import routes as AuthRoutes
+from services.books import routes as TaskRoutes
 
 app = FastAPI()
 

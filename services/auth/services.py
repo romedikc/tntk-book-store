@@ -4,8 +4,8 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 
-from src.auth import schemas
-from src.config import settings
+from services.auth import schemas
+from services.config import settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/login')
 

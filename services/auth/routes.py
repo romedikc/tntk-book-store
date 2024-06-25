@@ -5,9 +5,10 @@ from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from starlette import status
 
-from src.auth import schemas, crud, models
-from src.auth.services import create_access_token, verify_password
-from src.database import get_db
+from services.auth import schemas, crud
+from services.auth.services import create_access_token, verify_password
+from services.database import get_db
+from services.models import User
 
 db_dependency = Annotated[Session, Depends(get_db)]
 router = APIRouter(
@@ -18,7 +19,7 @@ router = APIRouter(
 
 @router.post("/login", response_model=schemas.Token)
 def login(db: db_dependency, userdetails: OAuth2PasswordRequestForm = Depends()):
-    user = db.query(models.User).filter(models.User.email == userdetails.username).first()
+    user = db.query(User).filter(User.email == userdetails.username).first()
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail=f"The User Does not exist")
