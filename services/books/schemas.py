@@ -1,5 +1,6 @@
 from typing import Optional
 
+from fastapi import UploadFile
 from pydantic import BaseModel
 
 
@@ -7,7 +8,7 @@ class ProductBase(BaseModel):
     name: str
     description: str
     price: float
-    picture: str = None
+    picture: Optional[UploadFile] = None
 
 
 class ProductCreate(ProductBase):

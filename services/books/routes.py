@@ -12,8 +12,13 @@ db_dependency = Depends(get_db)
 
 
 @router.post("/", response_model=Product)
-def create_product(product_create: ProductCreate, db: Session = db_dependency):
-    return crud.create_product(db=db, product_create=product_create)
+def create_product(product: ProductCreate, db: Session = db_dependency):
+    return crud.create_product(db=db,
+                               name=product.name,
+                               description=product.description,
+                               price=product.price,
+                               picture=product.picture,
+                               )
 
 
 @router.get("/{product_id}", response_model=Product)
