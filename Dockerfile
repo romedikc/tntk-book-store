@@ -6,4 +6,4 @@ COPY requirements.txt /code/
 RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /code/
 
-CMD ["uvicorn", "src.main:app", "--host=0.0.0.0", "--reload"]
+CMD ["uvicorn", "services.main:app", "--host=0.0.0.0", "--reload"]
