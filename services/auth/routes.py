@@ -1,12 +1,12 @@
 from typing import Annotated, List
 
 from fastapi import Depends, APIRouter, HTTPException
-from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from starlette import status
 
 from services.auth import schemas, crud
-from services.auth.services import create_access_token, verify_password
+from services.auth.utils import verify_password, create_access_token
 from services.database import get_db
 from services.models import User
 

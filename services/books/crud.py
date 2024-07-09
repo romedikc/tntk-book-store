@@ -34,6 +34,15 @@ def read_product(db: Session, product_id: int):
     return db.query(Product).filter(Product.id == product_id).first()
 
 
+def update_product_stock(db: Session, product_id: int, quantity: int):
+    product = db.query(Product).filter(Product.id == product_id).first()
+    if product:
+        product.stock -= quantity
+        db.commit()
+        return product
+    return None
+
+
 # def update_task(db: Session, db_task: models.Task, task_update: TaskUpdate):
 #     for field, value in task_update.dict(exclude_unset=True).items():
 #         setattr(db_task, field, value)

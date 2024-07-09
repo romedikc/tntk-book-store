@@ -16,12 +16,46 @@ services:
     env_file:
       - .env
 
-  web:
-    build: .
-    command: bash -c 'alembic upgrade head && uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload'
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  auth_service:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    command: bash -c 'alembic upgrade head && uvicorn services.main:app --host 0.0.0.0 --port 8000 --reload'
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
       - db
+
+  order_service:
+    build:
+      context: ./services/order
+      dockerfile: Dockerfile
+    command: bash -c 'alembic upgrade head && uvicorn services.main:app --host 0.0.0.0 --port 8001 --reload'
+    volumes:
+      - .:/code
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+      - rabbitmq
+
+  product_service:
+    build:
+      context: ./services/books
+      dockerfile: Dockerfile
+    command: bash -c 'alembic upgrade head && uvicorn services.main:app --host 0.0.0.0 --port 8002 --reload'
+    volumes:
+      - .:/code
+    ports:
+      - "8002:8002"
+    depends_on:
+      - db
+      - rabbitmq

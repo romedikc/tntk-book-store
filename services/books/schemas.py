@@ -9,6 +9,7 @@ class ProductBase(BaseModel):
     description: str
     price: float
     picture: Optional[UploadFile] = None
+    stock: int
 
 
 class ProductCreate(ProductBase):

@@ -5,7 +5,7 @@ from services.models import User, Order, Product, OrderItem, Payment
 from services.order.schemas import OrderCreate, OrderItemCreate, PaymentCreate
 
 
-def create_order(db: Session, order: OrderCreate):
+def create_order(db: Session, order: OrderCreate, rabbitmq_client):
     db_user = db.query(User).filter(User.id == order.user_id).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -22,6 +22,11 @@ def create_order(db: Session, order: OrderCreate):
 
         db_item = OrderItem(order_id=db_order.id, product_id=item.product_id, quantity=item.quantity)
         db.add(db_item)
+        rabbitmq_client.publish({
+            "order_id": db_order.id,
+            "product_id": item.product_id,
+            "quantity": item.quantity,
+        })
     db.commit()
 
     db.refresh(db_order)

@@ -22,6 +22,7 @@ class Product(Base):
     description = Column(String)
     price = Column(Float)
     picture = Column(String, nullable=True)
+    stock = Column(Integer)
 
 
 # order

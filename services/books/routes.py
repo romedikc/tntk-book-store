@@ -5,10 +5,31 @@ from typing import List
 from services.books import crud
 from services.books.schemas import ProductCreate, Product
 from services.database import get_db
+from services.main import get_inventory_rabbitmq_client
 
 router = APIRouter(prefix="/books", tags=["books"])
 
 db_dependency = Depends(get_db)
+
+
+def process_order(message):
+    product_id = message.get("product_id")
+    quantity = message.get("quantity")
+
+    crud.update_product_stock(db_dependency, product_id, quantity)
+
+
+@router.on_event("startup")
+async def startup_event():
+    rabbitmq_client = get_inventory_rabbitmq_client()
+    rabbitmq_client.connect()
+    rabbitmq_client.consume(callback=process_order)
+
+
+@router.on_event("shutdown")
+async def shutdown_event():
+    rabbitmq_client = get_inventory_rabbitmq_client()
+    rabbitmq_client.disconnect()
 
 
 @router.post("/", response_model=Product)
