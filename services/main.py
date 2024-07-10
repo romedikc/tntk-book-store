@@ -12,7 +12,7 @@ app.include_router(TaskRoutes.router)
 app.include_router(OrderRoutes.router)
 
 origins = [
-    "http://localhost:3000",
+    "*"
 ]
 
 app.add_middleware(
