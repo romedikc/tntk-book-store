@@ -1,11 +1,5 @@
-import os
-import shutil
-
-from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
 
-from services.books.schemas import ProductCreate
-from services.database import UPLOAD_DIR
 from services.models import Product
 
 
@@ -13,17 +7,10 @@ def create_product(db: Session,
                    name: str,
                    description: str,
                    price: float,
-                   picture: UploadFile = File(None),
                    ):
-    picture_path = None
-    if picture:
-        picture_path = os.path.join(UPLOAD_DIR, picture.filename)
-        with open(picture_path, "wb") as buffer:
-            shutil.copyfileobj(picture.file, buffer)
     db_product = Product(name=name,
                          description=description,
-                         price=price,
-                         picture=picture_path)
+                         price=price)
     db.add(db_product)
     db.commit()
     db.refresh(db_product)

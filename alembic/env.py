@@ -8,7 +8,7 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from services.database import Base
-from services.models import User
+from services.models import User, Product, Order, OrderItem, Payment
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, ".env"))

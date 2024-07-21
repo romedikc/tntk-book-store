@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from services.books import crud
-from services.books.schemas import ProductCreate, Product
+from services.books.schemas import Product, ProductCreate
 from services.database import get_db
 
 router = APIRouter(prefix="/books", tags=["books"])
@@ -17,7 +17,6 @@ def create_product(product: ProductCreate, db: Session = db_dependency):
                                name=product.name,
                                description=product.description,
                                price=product.price,
-                               picture=product.picture,
                                )
 
 

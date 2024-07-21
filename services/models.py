@@ -21,7 +21,6 @@ class Product(Base):
     name = Column(String, index=True)
     description = Column(String)
     price = Column(Float)
-    picture = Column(String, nullable=True)
 
 
 # order
