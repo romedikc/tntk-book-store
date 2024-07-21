@@ -4,7 +4,6 @@ import shutil
 from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
 
-from services.books.schemas import ProductCreate
 from services.database import UPLOAD_DIR
 from services.models import Product
 

@@ -2,14 +2,15 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
 
-from services import rabbitmq
 from services.database import get_db
-from services.main import get_rabbitmq_client, get_order_rabbitmq_client
 from services.order import crud
 from services.order.schemas import Order, OrderCreate, OrderItemCreate, OrderItem, Payment, PaymentCreate
+from services.rabbitmq_client import get_order_rabbitmq_client
+
+# from services.rabbitmq_client import get_order_rabbitmq_client
 
 db_dependency = Depends(get_db)
-rabbit_dependency = Depends(get_rabbitmq_client)
+# rabbit_dependency = Depends(rabbitmq_client)
 
 router = APIRouter(prefix="/orders", tags=["orders"])
 
