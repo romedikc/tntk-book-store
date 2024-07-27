@@ -11,3 +11,4 @@ python-dotenv
 python-jose
 psycopg2-binary
 pika
+redis

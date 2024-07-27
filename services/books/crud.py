@@ -13,6 +13,7 @@ def create_product(db: Session,
                    description: str,
                    price: float,
                    picture: UploadFile = File(None),
+                   stock: int = 0,
                    ):
     picture_path = None
     if picture:
@@ -22,7 +23,9 @@ def create_product(db: Session,
     db_product = Product(name=name,
                          description=description,
                          price=price,
-                         picture=picture_path)
+                         picture=picture_path,
+                         stock=stock,
+                         )
     db.add(db_product)
     db.commit()
     db.refresh(db_product)

@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from services.order import routes
 from services.rabbitmq_client import get_order_rabbitmq_client
+from services.redis import redis_client
 
 app = FastAPI()
 
@@ -12,6 +13,7 @@ app.include_router(routes.router)
 async def startup_event():
     rabbitmq_client = get_order_rabbitmq_client()
     rabbitmq_client.connect()
+    redis_client.connect()
 
 
 @app.on_event("shutdown")

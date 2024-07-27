@@ -9,7 +9,7 @@ class ProductBase(BaseModel):
     description: str
     price: float
     picture: Optional[UploadFile] = None
-    stock: int
+    stock: Optional[int] = 0
 
 
 class ProductCreate(ProductBase):
@@ -18,7 +18,6 @@ class ProductCreate(ProductBase):
 
 class Product(ProductBase):
     id: int
-    picture: Optional[str] = None
 
     class Config:
         orm_mode: True

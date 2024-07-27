@@ -25,6 +25,7 @@ def create_product(product: ProductCreate, db: Session = db_dependency):
                                description=product.description,
                                price=product.price,
                                picture=product.picture,
+                               stock=product.stock,
                                )
 
 

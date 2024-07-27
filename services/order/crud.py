@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from services.models import User, Order, Product, OrderItem, Payment
 from services.order.schemas import OrderCreate, OrderItemCreate, PaymentCreate
+from services.redis import redis_client
 
 
 def create_order(db: Session, order: OrderCreate, rabbitmq_client):
@@ -68,3 +69,14 @@ def get_orders(db: Session):
 
 def get_payments(db: Session):
     return db.query(Payment).all()
+
+
+def get_user_orders(db: Session, user_id: int):
+    return db.query(Order).filter(Order.user_id == user_id).all()
+
+
+def clear_user_orders_cache(user_id: int):
+    cache_key = f"user_orders_{user_id}"
+    redis = redis_client.get_client()
+    redis.delete(cache_key)
+    return {"message": "Cache cleared"}

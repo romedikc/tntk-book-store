@@ -14,7 +14,7 @@ async def startup_event():
 
         rabbitmq_client = get_inventory_rabbitmq_client()
         rabbitmq_client.connect()
-        rabbitmq_client.consume(callback=routes.process_order)
+        # rabbitmq_client.consume(callback=routes.process_order)
     except Exception as e:
         print(f"Failed to connect or consume from RabbitMQ: {e}")
 
