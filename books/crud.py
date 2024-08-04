@@ -4,8 +4,8 @@ import shutil
 from fastapi import UploadFile, File
 from sqlalchemy.orm import Session
 
-from services.database import UPLOAD_DIR
-from services.models import Product
+from root.database import UPLOAD_DIR
+from root.models import Product
 
 
 def create_product(db: Session,

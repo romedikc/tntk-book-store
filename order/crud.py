@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 
-from services.models import User, Order, Product, OrderItem, Payment
-from services.order.schemas import OrderCreate, OrderItemCreate, PaymentCreate
-from services.redis import redis_client
+from root.models import User, Order, Product, OrderItem, Payment
+from order.schemas import OrderCreate, OrderItemCreate, PaymentCreate
+from root.redis import redis_client
 
 
 def create_order(db: Session, order: OrderCreate, rabbitmq_client):

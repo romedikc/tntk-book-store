@@ -1,4 +1,4 @@
-from services.rabbitmq import RabbitMQClient
+from root.rabbitmq import RabbitMQClient
 
 
 def get_order_rabbitmq_client():

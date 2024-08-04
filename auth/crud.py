@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from services.auth import schemas
-from services.auth.utils import hash_pass
-from services.models import User
+from auth import schemas
+from auth.utils import hash_pass
+from root.models import User
 
 
 def create_user(db: Session, name: str, email: str, password: str):

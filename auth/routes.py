@@ -5,10 +5,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from starlette import status
 
-from services.auth import schemas, crud
-from services.auth.utils import verify_password, create_access_token
-from services.database import get_db
-from services.models import User
+from auth import schemas, crud
+from auth.utils import verify_password, create_access_token
+from root.database import get_db
+from root.models import User
 
 db_dependency = Annotated[Session, Depends(get_db)]
 router = APIRouter(

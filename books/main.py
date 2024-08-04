@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from services.books import routes
-from services.rabbitmq_client import get_inventory_rabbitmq_client
+from books import routes
+from root.rabbitmq_client import get_inventory_rabbitmq_client
 
 app = FastAPI()
 

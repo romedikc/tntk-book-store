@@ -4,12 +4,12 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List
 
-from services.database import get_db
-from services.order import crud
-from services.order.schemas import Order, OrderCreate, OrderItemCreate, OrderItem, Payment, PaymentCreate
-from services.order.utils import to_dict
-from services.rabbitmq_client import get_order_rabbitmq_client
-from services.redis import redis_client
+from root.database import get_db
+from order import crud
+from order.schemas import Order, OrderCreate, OrderItemCreate, OrderItem, Payment, PaymentCreate
+from order.utils import to_dict
+from root.rabbitmq_client import get_order_rabbitmq_client
+from root.redis import redis_client
 
 db_dependency = Depends(get_db)
 

@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 
-from services.books import crud
-from services.books.schemas import ProductCreate, Product
-from services.database import get_db
+from books import crud
+from books.schemas import ProductCreate, Product
+from root.database import get_db
 
 router = APIRouter(prefix="/books", tags=["books"])
 

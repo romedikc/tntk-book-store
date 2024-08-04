@@ -1,9 +1,9 @@
 # from fastapi import FastAPI
 #
-# from services.auth import routes as AuthRoutes
-# from services.books import routes as ProductRoutes
-# from services.order import routes as OrderRoutes
-# from services.rabbitmq_client import connect_rabbitmq_clients, \
+# from root.auth import routes as AuthRoutes
+# from root.books import routes as ProductRoutes
+# from root.order import routes as OrderRoutes
+# from root.rabbitmq_client import connect_rabbitmq_clients, \
 #     get_inventory_rabbitmq_client, shutdown_rabbitmq_clients
 #
 # app = FastAPI()

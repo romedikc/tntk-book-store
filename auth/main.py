@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from services.auth import routes
+from auth import routes
 
 app = FastAPI()
 

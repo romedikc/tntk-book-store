@@ -28,9 +28,9 @@ services:
 
   auth_service:
     build:
-      context: ./services/auth
+      context: auth
       dockerfile: Dockerfile
-    command: bash -c 'alembic upgrade head && uvicorn services.auth.main:app --host 0.0.0.0 --port 8000 --reload'
+    command: bash -c 'alembic upgrade head && uvicorn auth.main:app --host 0.0.0.0 --port 8000 --reload'
     volumes:
       - .:/code
     ports:
@@ -41,9 +41,9 @@ services:
 
   order_service:
     build:
-      context: ./services/order
+      context: order
       dockerfile: Dockerfile
-    command: bash -c 'alembic upgrade head && uvicorn services.order.main:app --host 0.0.0.0 --port 8001 --reload'
+    command: bash -c 'alembic upgrade head && uvicorn order.main:app --host 0.0.0.0 --port 8001 --reload'
     volumes:
       - .:/code
     ports:
@@ -55,9 +55,9 @@ services:
 
   product_service:
     build:
-      context: ./services/books
+      context: books
       dockerfile: Dockerfile
-    command: bash -c 'alembic upgrade head && uvicorn services.books.main:app --host 0.0.0.0 --port 8002 --reload'
+    command: bash -c 'alembic upgrade head && uvicorn books.main:app --host 0.0.0.0 --port 8002 --reload'
     volumes:
       - .:/code
     ports:
